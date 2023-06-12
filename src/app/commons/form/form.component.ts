@@ -37,12 +37,9 @@ export class FormComponent implements OnInit {
 
   // Email check regex expression
   emailRegex: string = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]{2,}\.[a-zA-Z]{2,}$";
-  nameRegex: string = "^[a-zA-Z]+$";
-
-  contactRegex: string = "[789][0-9]{9}";
+  nameRegex: string = "^(?!.*  )[a-zA-Z ]+$";
   taxidRegex: string = "^\d{8}[A-Z]$";
-  websiteRegex: string = "https?:\/\/([a-zA-Z0-9]([^ @&%$\\\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.])+[a-zA-Z0-9]{2,4}([\.][a-zA-Z]{2})?"
-
+ 
   corporatename: any;
   taxid: any;
   email: any;
@@ -78,6 +75,7 @@ export class FormComponent implements OnInit {
       ]),
       number: new FormControl('', [
         Validators.required,
+        Validators.minLength(9),
         Validators.maxLength(9)
       ]),
       email: new FormControl('', [

@@ -35,7 +35,7 @@
 
               <ion-col size="10" sizeMd="6">
                 <ion-item lines="none" color="light">
-                  <ion-input name="number" type="number" maxlength="9" placeholder="tlf" label="Telefono"
+                  <ion-input name="number" maxlength="9" minlength="9" required pattern="^[0-9]+$" placeholder="tlf" label="Telefono"
                     formControlName="number" label-placement="floating" fill="outline" errorText="Telefono invalido"
                     mode="ios"></ion-input>
                 </ion-item>
