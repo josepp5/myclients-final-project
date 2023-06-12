@@ -41,7 +41,7 @@ export class FormComponent implements OnInit {
 
   contactRegex: string = "[789][0-9]{9}";
   taxidRegex: string = "^\d{8}[A-Z]$";
-  websiteRegex: string = "^(https?:\/\/)?([\w\.]+)\.([a-zA-Z]{2,6})(\/[\w\.]*)*\/?$"
+  websiteRegex: string = "https?:\/\/([a-zA-Z0-9]([^ @&%$\\\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.])+[a-zA-Z0-9]{2,4}([\.][a-zA-Z]{2})?"
 
   corporatename: any;
   taxid: any;
@@ -87,8 +87,7 @@ export class FormComponent implements OnInit {
         Validators.maxLength(50)
       ]),
       site: new FormControl('', [
-        Validators.maxLength(50),
-        Validators.pattern(this.websiteRegex),
+        Validators.maxLength(100)
       ]),
       taxid: new FormControl('', [
         Validators.required,
