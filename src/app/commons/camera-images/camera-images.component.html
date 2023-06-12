@@ -1,0 +1,15 @@
+<ion-item lines="none" color="light">
+
+	<ion-thumbnail slot="start">
+		<ion-img *ngIf="this.imageService.image" [src]="this.imageService.image" formControlName="logo"></ion-img>
+	</ion-thumbnail>
+
+	<ion-button slot="end" fill="clear" (click)="this.imageService.selectImage()">
+		<ion-icon slot="icon-only" name="camera"></ion-icon>
+	</ion-button>
+
+	<ion-button slot="end" fill="clear" (click)="this.imageService.deleteImage()">
+		<ion-icon slot="icon-only" name="trash"></ion-icon>
+	</ion-button>
+
+</ion-item>

@@ -1,0 +1,148 @@
+<div class="main-header"></div>
+
+<div class="container">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+
+      <ion-col size="12" sizeLg="8" sizeMd="10">
+        <ion-card *ngIf="!facturaFormActive; else facturaForm">
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="10" sizeMd="10" sizeLg="6">
+              <ion-item color="light">
+                <ion-select (ionChange)="groupChange($event)" aria-label="entity" interface="action-sheet" label="Tipo"
+                  label-placement="floating" [(ngModel)]="selectGroup"
+                  [disabled]="this.group === undefined ? false : true">
+                  <ion-select-option *ngFor="let opcion of groups" [value]="opcion.id">{{ opcion.id
+                    }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+
+
+          <form [formGroup]="form">
+
+            <ion-row class="ion-justify-content-center">
+
+              <ion-col size="10" sizeMd="6">
+                <ion-item lines="none" color="light">
+                  <ion-input name="corporatename" maxlength="30" placeholder="nombre del cliente" label="Nombre"
+                    formControlName="corporatename" label-placement="floating" fill="outline"
+                    errorText="Nombre invalido" mode="ios"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="10" sizeMd="6">
+                <ion-item lines="none" color="light">
+                  <ion-input name="number" type="number" maxlength="9" placeholder="tlf" label="Telefono"
+                    formControlName="number" label-placement="floating" fill="outline" errorText="Telefono invalido"
+                    mode="ios"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="10" sizeMd="6">
+                <ion-item lines="none" color="light">
+                  <ion-input name="email" type="email" maxlength="40" placeholder="email@domain.com" label="Email"
+                    formControlName="email" label-placement="floating" fill="outline" errorText="Email no valido"
+                    mode="ios"></ion-input>
+                </ion-item>
+              </ion-col>
+
+
+              <ion-col size="10" sizeMd="6">
+                <ion-item lines="none" color="light">
+                  <ion-input name="pais" type="text" maxlength="20" placeholder="ej: paginaweb.com" label="Pagina web (opcional)"
+                    label-placement="floating" formControlName="site" fill="outline" errorText="Pagina web no valida"
+                    mode="ios"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="10" sizeMd="6">
+                <ion-item lines="none" color="light">
+                  <ion-input name="identificador" maxlength="9" type="text" placeholder="ej: 46854367B" label="DNI"
+                    label-placement="floating" formControlName="taxid" required pattern="^\d{8}[A-Z]$"
+                    errorText="Formato de DNI incorrecto" fill="outline" mode="ios"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="10" sizeMd="6">
+                <app-camera-images></app-camera-images>
+              </ion-col>
+
+              <ion-col size="11" sizeMd="6">
+                <ion-button expand="block" color="primary" [disabled]="!form.valid"
+                  (click)="confirm('otro')">Confirmar</ion-button>
+              </ion-col>
+            </ion-row>
+          </form>
+
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</div>
+
+<!-- FACTURA FORM -->
+
+<ng-template #facturaForm>
+  <ion-card>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="10">
+        <ion-item color="light">
+          <ion-select (ionChange)="groupChange($event)" aria-label="entity" interface="action-sheet" label="Tipo"
+            label-placement="floating" [(ngModel)]="selectGroup" [disabled]="this.group === undefined ? false : true">
+            <ion-select-option *ngFor="let opcion of groups" [value]="opcion.id">{{ opcion.id }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <form [formGroup]="factuform">
+      <ion-grid>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="10">
+            <ion-item color="light">
+              <ion-select (ionChange)="tipoChange($event)" aria-label="entity" interface="action-sheet" label="Grupo"
+                label-placement="floating" formControlName="group">
+                <ion-select-option value="Clientes">Clientes</ion-select-option>
+                <ion-select-option value="Proveedores">Proveedores</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="10">
+            <ion-item color="light">
+              <ion-select (ionChange)="nameChange($event)" aria-label="corporatename" interface="action-sheet"
+                label="Nombre" label-placement="floating" formControlName="corporatename">
+                <ion-select-option *ngFor="let opcion of corporatenames" [value]="opcion">{{ opcion
+                  }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="10">
+            <app-camera-images></app-camera-images>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="11">
+            <ion-button expand="block" color="primary" [disabled]="!factuform.valid"
+              (click)="confirm('Factura')">Confirmar</ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </form>
+  </ion-card>
+  <ng-template>
+
+    <ion-toast [isOpen]="isToastOpen" icon="add-circle-outline" message="New Customer has been created!" position="top"
+      [duration]="5000" (didDismiss)="setOpen(false)"></ion-toast>

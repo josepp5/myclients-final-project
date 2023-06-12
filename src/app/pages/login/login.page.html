@@ -1,0 +1,87 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <body>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col sizeXl="3" sizeLg="5" sizeMd="4" sizeSm="4" sizeXs="7">
+        <ion-img src="../../../assets/myClientHomeLogo.gif"></ion-img>
+      </ion-col>
+    </ion-row>
+
+
+    <div class="login">
+      <ion-row class="ion-justify-content-center">
+        <ion-col sizeXl="3" sizeLg="4" sizeMd="7" sizeSm="8" sizeXs="9">
+          <h1>Login</h1>
+          <form [formGroup]="form">
+            <input type="text" name="u" placeholder="Email" (focus)="inpuFocus()" formControlName="email"
+              required="required" />
+
+            <input type="password" name="p" placeholder="Password" (focus)="inpuFocus()" formControlName="password"
+              required="required" />
+
+            <div *ngIf="invalid">
+              <div class="invalidMessage">
+                <ion-label>Email o contraseña incorrectos, Prueba otra vez!</ion-label>
+              </div>
+            </div>
+
+            <button type="submit" (click)="loginUser()" class="btn btn-primary btn-block btn-large">Entrar</button>
+            <br>
+
+            <a routerLink="/signup" (click)="navigatetoSignUp()">Aun no estas registrado? Registrarse ahora</a>
+
+          </form>
+        </ion-col>
+      </ion-row>
+    </div>
+
+  </body>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <form [formGroup]="form">
+  <ion-item>
+    <ion-input 
+    type="email" 
+    formControlName="email" 
+    label="Email"
+    >
+  </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input 
+    type="Password" 
+    formControlName="password"
+    label="Passsword"
+    >
+  </ion-input>
+  </ion-item>
+
+<ion-button expand="block" color="success" [disabled]="!form.valid" (click)="loginUser()">Log in</ion-button>
+<ion-router-link routerLink="/signup" (click)="navigatetoSignUp()">Aun no estas registrado? Registrarse ahora</ion-router-link>
+</form>
+-->
+</ion-content>

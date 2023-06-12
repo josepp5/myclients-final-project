@@ -1,0 +1,117 @@
+<ion-content [fullscreen]="true">
+  <div class="main-header"></div>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12">
+        <div class="image">
+          <ion-img src="../../../assets/myClientHomeLogo.gif"></ion-img>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-label name="username">
+          <ion-chip color="light">
+            <ion-label>
+              {{user.email}}
+            </ion-label>
+          </ion-chip>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin-horizontal">
+      <ion-col *ngFor="let item of features" size="6" sizeLg="3">
+        <ion-card class="ion-text-center" [href]="item.src">
+          <ion-card-header>
+            <div align="center">
+              <img [src]="item?.icon" />
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-label color="primary" name="itemname">{{ item?.name }}</ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+
+    
+    <ion-col size="12" sizeLg="4">
+      <ion-list lines="none">
+        <ion-list-header>
+          <ion-label name="recent" color="light" class="strokeme">CLIENTES RECIENTES</ion-label>
+        </ion-list-header>
+        <ion-item *ngIf="clientes.length === 0">
+          Aún no exiten clientes
+        </ion-item>
+
+        <ion-row class="ion-margin-horizontal">
+          <ion-col size="12" sizeMd="6" sizeLg="12" *ngFor="let item of clientes.slice(clientes.length - 2)">
+            <ion-item lines="none" color="light" href="detail/Clientes/{{item.id}}">
+              <ion-icon slot="start" name="person" color="primary"></ion-icon>
+              <ion-label name="customers" size="large" class="ion-text-wrap">
+                <b>{{item.corporatename}}</b>
+                <p>{{item.email}}</p>
+              </ion-label>
+
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-col>
+
+
+
+    <ion-col size="12" sizeLg="4">
+
+      <ion-list lines="none">
+        <ion-list-header>
+          <ion-label class="strokeme" name="recent" color="light">PROVEEDORES RECIENTES</ion-label>
+        </ion-list-header>
+        <ion-item *ngIf="clientes.length === 0">
+          Aún no exiten proveedores
+        </ion-item>
+        <ion-row class="ion-margin-horizontal">
+          <ion-col size="12" sizeMd="6" sizeLg="12" *ngFor="let item of proveedores.slice(proveedores.length - 2)">
+            <ion-item lines="none" color="light" href="detail/Proveedores/{{item.id}}">
+              <ion-icon slot="start" name="storefront" color="primary"></ion-icon>
+              <ion-label name="proveedores" size="large" class="ion-text-wrap">
+                <b>{{item.corporatename}}</b>
+                <p>{{item.email}}</p>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+
+    </ion-col>
+
+
+    <ion-col size="12" sizeLg="4">
+      <ion-list lines="none">
+        <ion-list-header>
+          <ion-label class="strokeme" name="recent" color="light">FACTURAS RECIENTES</ion-label>
+        </ion-list-header>
+        <ion-item *ngIf="clientes.length === 0">
+          Aún no exiten facturas
+        </ion-item>
+        <ion-row class="ion-margin-horizontal">
+          <ion-col size="12" sizeMd="6" sizeLg="12"  *ngFor="let item of facturas.slice(facturas.length - 4)">
+            <ion-item lines="none" color="light" href="detail/Facturas/{{item.id}}">
+              <ion-icon slot="start" name="document-text" color="primary"></ion-icon>
+              <ion-label name="facturas" size="large" class="ion-text-wrap">
+                <b>{{item.numero}}</b>
+                <p>{{item.date | date:'dd/MM/yyyy HH:mm:ss'}}</p>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+
+</ion-content>

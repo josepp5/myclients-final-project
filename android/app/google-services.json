@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "283170905263",
+    "firebase_url": "https://prueba-93a46-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "prueba-93a46",
+    "storage_bucket": "prueba-93a46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283170905263:android:be9f3578afc309b45f885a",
+        "android_client_info": {
+          "package_name": "ionic.prueba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283170905263-2k82d62nd8fafcljqh2vq7ok5qequq29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNCXMfSAXB4E82-8QPaFPwIp5Wv44t6TE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283170905263-2k82d62nd8fafcljqh2vq7ok5qequq29.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<body>
+
+  <ion-row class="logo">
+    <ion-col sizeXl="3" sizeLg="5" sizeMd="4" sizeSm="4" sizeXs="7">
+      <ion-img src="../../../assets/myClientHomeLogo.gif"></ion-img>
+    </ion-col>
+  </ion-row>
+
+  <div class="signup">
+    <ion-row class="ion-justify-content-center">
+      <ion-col sizeXl="3" sizeLg="4" sizeMd="7" sizeSm="8" sizeXs="9">
+        <h1>SignUp</h1>
+        <form [formGroup]="form">
+
+          <input type="text" placeholder="Email" formControlName="email" label="email" />
+
+          <input type="Password" placeholder="Contraseña" (focus)="inpuFocus()" formControlName="password"
+            label="passsword" />
+
+          <input type="Password" placeholder="Repite la contraseña" (focus)="inpuFocus()"
+            formControlName="confirmPassword" label="confirm password" />
+
+          <div *ngIf="invalid">
+            <div class="invalidMessage">
+              <ion-label> Debes introducir un email valido, la contraseña debe tener mas de 5 caracteres</ion-label>
+            </div>
+          </div>
+
+          <button type="submit" (click)="signup()" class="btn btn-primary btn-block btn-large">Registrarse</button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </div>
+
+</body>

@@ -1,0 +1,199 @@
+<div class="main-header"></div>
+
+<ion-row class="ion-justify-content-center">
+  <ion-col size="10" sizeLg="6">
+    <ion-item class="GroupSelect">
+      <ion-select (ionChange)="groupChange($event)" aria-label="group" interface="action-sheet" label="Grupo"
+        label-placement="floating" [(ngModel)]="selectGroup">
+        <ion-select-option *ngFor="let opcion of groups" [value]="opcion">{{ opcion.id }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-col>
+</ion-row>
+
+<div class="list" *ngIf="this.selectGroup != 'Facturas'">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="11" sizeLg="7">
+      <form role="search">
+        <div>
+          <ion-searchbar animated="true" color="tertiary" placeholder="Nombre" [(ngModel)]="searchText"
+            (ionInput)="filterItems(this.selectGroup)" name="corporatename"></ion-searchbar>
+        </div>
+      </form>
+    </ion-col>
+  </ion-row>
+
+  <div *ngIf="!valid; else filteredList">
+
+    <ion-list [inset]="true" lines="none">
+      
+        <ion-row>
+          <ion-col size="12">
+            <ion-list-header>
+              <ion-label name="recent" class="strokeme" color="light">{{this.selectGroup}}</ion-label>
+            </ion-list-header>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="10">
+            <div>
+              <ion-item  *ngIf="clientes.length === 0">
+                <ion-label class="noItemsText">
+                  No existen {{this.selectGroup}} para : {{this.searchText}}
+                </ion-label>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12" sizeMd="6" sizeLg="3" sizeSm="12" *ngFor="let c of clientes">
+            <ion-card href="detail/{{this.selectGroup}}/{{c.id}}">
+
+              <div class="image">
+
+                <ion-img alt="Silhouette of mountains" *ngIf="c.logo == 'undefined'"
+                  src="https://ionicframework.com/docs/img/demos/card-media.png" />
+                <ion-img *ngIf="c.logo != 'undefined'" [src]="c.logo" />
+
+              </div>
+
+              <ion-card-header>
+                <ion-card-title>{{ c.corporatename }}</ion-card-title>
+                <ion-card-subtitle>{{ c.taxid }}</ion-card-subtitle>
+              </ion-card-header>
+
+              <ion-card-content>
+                {{ c.email }}
+                <br>
+                {{ c.site }}
+              </ion-card-content>
+              <!---->
+            </ion-card>
+          </ion-col>
+        </ion-row>
+    </ion-list>
+
+
+  </div>
+</div>
+
+
+<div *ngIf="this.selectGroup === 'Facturas'">
+  <form role="search">
+    <div>
+      <ion-searchbar animated="true" color="tertiary" placeholder="Nombre/codigo" [(ngModel)]="searchText"
+        (ionInput)="filterItems(this.selectGroup)" name="corporatename"></ion-searchbar>
+    </div>
+  </form>
+  <div *ngIf="!valid; else filteredList">
+    <ion-list [inset]="true" lines="none">
+
+      <ion-list-header>
+        <ion-label name="recent" class="strokeme" color="light">{{this.selectGroup}}</ion-label>
+      </ion-list-header>
+      <ion-item class="noItemsText" *ngIf="facturas.length === 0">
+        <ion-label>
+          No existen {{this.selectGroup}} para : {{this.searchText}}
+        </ion-label>
+      </ion-item>
+
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12" sizeMd="6" sizeLg="3" sizeSm="12" *ngFor="let c of facturas">
+            <ion-card href="detail/{{this.selectGroup}}/{{c.id}}">
+              <div class="image">
+
+                <ion-img alt="Silhouette of mountains" *ngIf="c.photo == 'undefined'"
+                  src="https://ionicframework.com/docs/img/demos/card-media.png" />
+                <ion-img *ngIf="c.photo != 'undefined'" [src]="c.photo" />
+
+              </div>
+              <ion-card-header>
+                <ion-card-title>{{ c.numero }}</ion-card-title>
+                <ion-card-subtitle>{{ c.date | date:'dd/MM/yyyy HH:mm:ss' }}</ion-card-subtitle>
+              </ion-card-header>
+
+              <ion-card-content>
+                {{ c.group }}
+                <br>
+                {{ c.corporatename }}
+              </ion-card-content>
+              <!---->
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+  </div>
+</div>
+
+<ng-template #filteredList>
+  <ion-list [inset]="true" lines="none">
+
+    <ion-list-header>
+      <ion-label name="recent" class="strokeme" color="light">{{this.selectGroup}}</ion-label>
+    </ion-list-header>
+    <ion-item class="noItemsText" *ngIf="filteredItems.length === 0">
+      <ion-label>
+        No existen {{this.selectGroup}} para : {{this.searchText}}
+      </ion-label>
+    </ion-item>
+
+    <div *ngIf="this.selectGroup != 'Facturas'">
+      <ion-row>
+        <ion-col size="12" sizeMd="6" sizeLg="3" sizeSm="12" *ngFor="let c of filteredItems">
+          <ion-card href="detail/{{this.selectGroup}}/{{c.id}}">
+
+            <div class="image">
+
+              <ion-img alt="Silhouette of mountains" *ngIf="c.logo == 'undefined'"
+                src="https://ionicframework.com/docs/img/demos/card-media.png" />
+              <ion-img *ngIf="c.logo != 'undefined'" [src]="c.logo" />
+
+            </div>
+
+            <ion-card-header>
+              <ion-card-title>{{ c.corporatename }}</ion-card-title>
+              <ion-card-subtitle>{{ c.taxid }}</ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              {{ c.email }}
+              <br>
+              {{ c.site }}
+            </ion-card-content>
+            <!---->
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngIf="this.selectGroup === 'Facturas'">
+      <ion-row>
+        <ion-col size="12" sizeMd="6" sizeLg="3" sizeSm="12" *ngFor="let c of filteredItems">
+          <ion-card href="detail/{{this.selectGroup}}/{{c.id}}">
+            <div class="image">
+              <ion-img alt="Silhouette of mountains" *ngIf="c.photo== 'undefined'"
+                src="https://ionicframework.com/docs/img/demos/card-media.png" />
+              <ion-img *ngIf="c.photo != 'undefined'" [src]="c.photo" />
+            </div>
+            <ion-card-header>
+              <ion-card-title>{{ c.numero }}</ion-card-title>
+              <ion-card-subtitle>{{ c.date | date:'dd/MM/yyyy HH:mm:ss' }}</ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              {{ c.group }}
+              <br>
+              {{ c.corporatename }}
+            </ion-card-content>
+            <!---->
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+
+  </ion-list>
+</ng-template>
