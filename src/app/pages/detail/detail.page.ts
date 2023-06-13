@@ -78,14 +78,12 @@ export class DetailPage implements OnInit {
       if(this.group!='Facturas'){
         this.dataService.getCustomerById(this.id, this.userEmail, this.group).subscribe( customer => {
           this.customer = customer;
-          console.log(customer);
           
         });
         // If its a factura loads factura
       } else {
         this.dataService.getFacturaById(this.id, this.userEmail, this.group).subscribe( factura => {
           this.factura = factura;
-          console.log(factura);
 
         });
       }

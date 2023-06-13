@@ -4,5 +4,6 @@ export class Factura {
     group:any;
     date:any;
     corporatename:any;
+    employer:any;
     photo:any;
   }

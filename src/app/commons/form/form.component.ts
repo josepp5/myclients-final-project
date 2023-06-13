@@ -157,12 +157,12 @@ export class FormComponent implements OnInit {
       this.router.navigate(['detail', this.group, this.newFactura.id])
     } else {
       this.newCustomer = this.form.getRawValue();
-      console.log(this.form.getRawValue());
 
       if (this.imageService.image != undefined) {
         this.newCustomer.logo = this.imageService.image;
       }
       this.newCustomer.id = this.identifier;
+      
       this.dataService.updateCustomer(this.newCustomer, this.userEmail, this.group);
       this.router.navigate(['detail', this.group, this.newCustomer.id])
     }
@@ -183,6 +183,7 @@ export class FormComponent implements OnInit {
 
         factu.date = Date.now();
         factu.numero = await this.getFacturaNum(factu.corporatename);
+        factu.employer = this.userEmail;
 
         if (this.imageService.image) {
           factu.photo = this.imageService.image;
@@ -202,12 +203,13 @@ export class FormComponent implements OnInit {
       } else {
         let customerO = this.form.getRawValue() as Customer;
 
+        customerO.employer = this.userEmail;
+
         if (this.imageService.image) {
           customerO.logo = this.imageService.image
         } else {
           customerO.logo = 'undefined';
         }
-        console.log({ customerO });
 
         this.dataService.addCustomer(customerO, this.userEmail, this.selectGroup);
         this.setOpen(true);

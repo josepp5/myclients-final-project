@@ -64,7 +64,6 @@ export class CustomersService {
   async updateCustomer(customer: Customer, userEmail:any, tipo:any) {
     const docInstance = doc(this.firestore, `users/${userEmail}/${tipo}/${customer.id}`);
     const updatedData = { ...customer };
-    console.log(updatedData);
 
     await updateDoc(docInstance, updatedData);
   }

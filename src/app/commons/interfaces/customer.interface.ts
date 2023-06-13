@@ -5,6 +5,7 @@ export interface Customer {
   taxid:any;
   email:any;
   logo:any;
+  employer:any;
   number:any;
   site:any;
 }

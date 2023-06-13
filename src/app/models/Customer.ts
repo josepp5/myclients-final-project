@@ -5,6 +5,7 @@ export class Customer {
   email:any;
   logo?:any;
   number:any;
+  employer:any;
   site:any;
 }
 

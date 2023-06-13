@@ -90,7 +90,6 @@ export class ListComponent  implements OnInit {
           }
         }
         this.filteredItems = contains;
-        console.log(contains);
       }
     } else {
       if (this.searchText.length === 1) {

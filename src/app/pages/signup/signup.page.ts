@@ -51,7 +51,6 @@ export class SignupPage implements OnInit {
     if (user.password == user.confirmPassword && this.form.valid) {
       const res = await this.auth.register(this.form.value)
         .then( async response => {
-          console.log(response);
           let user = new User;
           user.email = response.user.email;
           user.rol = 'empleado';
